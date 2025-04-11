@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jumeirah Asora Bay - Contact Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: url('https://jumeirah-asorabay.com/wp-content/uploads/2024/11/Jumeirah-Asora-Bay.png') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 400px;
+      margin: 60px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .header-logo {
+      display: block;
+      max-width: 200px;
+      margin: 0 auto 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #002f6c;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004080;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: 600;
+      color: green;
+    }
+
+    .footer-logo {
+      display: block;
+      max-width: 150px;
+      margin: 30px auto 0;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="https://cdn.prod.website-files.com/6762a81902cd86e2abc69867/676543272519a98e4c2c11e4_Asora%20Bay%20Logo.svg" class="header-logo" alt="Jumeirah Asora Bay Logo">
+
+    <form id="contact-form">
+      <h2>Register Your Interest</h2>
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp Number" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <button type="submit">Submit</button>
+      <div id="message"></div>
+    </form>
+
+    <img src="https://jumeirah-asorabay.com/wp-content/uploads/2024/11/Jumeirah-Asora-Bay.png" class="footer-logo" alt="Footer Logo">
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzgN2paSS9FSL26iaLDjSfsoLxIBDM9TjN8crEnQQj2iloJPIvNiQeWfFhOFuuuBVn6/exec';
+    const form = document.getElementById('contact-form');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      message.textContent = "Submitting...";
+
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.name.value,
+          whatsapp: form.whatsapp.value,
+          email: form.email.value,
+          phone: form.phone.value
+        })
+      });
+
+      message.textContent = "Submitted successfully!";
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
